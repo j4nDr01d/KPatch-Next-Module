@@ -43,7 +43,7 @@ async function getInstalledVersion() {
     if (superkey === '') return null;
     if (import.meta.env.DEV) return uInt2String('c06');
     const working = await exec(`kpatch ${superkey} hello`, { env: { PATH: `${modDir}/bin` }});
-    if (working.stdout.trim() !== 'hello') return null;
+    if (working.stdout.trim() !== 'hello1158') return null;
     const version = await exec(`kpatch ${superkey} kpver`, { env: { PATH: `${modDir}/bin` }});
     return uInt2String(version.stdout.trim());
 }

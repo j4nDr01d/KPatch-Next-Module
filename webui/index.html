@@ -29,81 +29,93 @@
         <div class="content">
             <!-- Home -->
             <div id="home-page" class="page active">
-                <div class="card home-card warning-card content-padding" hidden id="not-installed">
-                    <md-ripple></md-ripple>
-                    <md-icon class="leading-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm136-220q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Z" /></svg></md-icon>
-                    <div class="home-card-text">
-                        <div class="home-card-title">Not installed or authenticated</div>
-                        <div class="home-card-subtitle">Click to install</div>
+                <div class="page-content">
+                    <div class="card home-card warning-card content-padding" hidden id="not-installed">
+                        <md-ripple></md-ripple>
+                        <md-icon class="leading-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm136-220q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Z" /></svg></md-icon>
+                        <div class="home-card-text">
+                            <div class="home-card-title">Not installed or authenticated</div>
+                            <div class="home-card-subtitle">Click to install</div>
+                        </div>
+                        <md-filled-button id="authenticate">SuperKey</md-filled-button>
                     </div>
-                    <md-filled-button id="authenticate">SuperKey</md-filled-button>
-                </div>
-                <div class="card home-card content-padding" id="working">
-                    <md-ripple></md-ripple>
-                    <md-icon class="leading-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z" /></svg></md-icon>
-                    <div class="home-card-text">
-                        <div class="home-card-title">Working</div>
-                        <div class="home-card-subtitle" id="version"></div>
+                    <div class="card home-card content-padding" id="working">
+                        <md-ripple></md-ripple>
+                        <md-icon class="leading-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z" /></svg></md-icon>
+                        <div class="home-card-text">
+                            <div class="home-card-title">Working</div>
+                            <div class="home-card-subtitle" id="version"></div>
+                        </div>
+                        <md-text-button id="uninstall">Uninstall</md-text-button>
                     </div>
-                    <md-text-button id="uninstall">Uninstall</md-text-button>
-                </div>
-                <div class="card info-card content-padding" id="info">
-                    <div class="info">
-                        <div slot="title">Kernel version</div>
-                        <div slot="detail" id="kernel"></div>
-                    </div>
-                    <div class="info">
-                        <div slot="title">System version</div>
-                        <div slot="detail" id="system"></div>
-                    </div>
-                    <div class="info">
-                        <div slot="title">Fingerprint</div>
-                        <div slot="detail" id="fingerprint"></div>
-                    </div>
-                    <div class="info">
-                        <div slot="title">SELinux status</div>
-                        <div slot="detail" id="selinux"></div>
+                    <div class="card info-card content-padding" id="info">
+                        <div class="info">
+                            <div slot="title">Kernel version</div>
+                            <div slot="detail" id="kernel"></div>
+                        </div>
+                        <div class="info">
+                            <div slot="title">System version</div>
+                            <div slot="detail" id="system"></div>
+                        </div>
+                        <div class="info">
+                            <div slot="title">Fingerprint</div>
+                            <div slot="detail" id="fingerprint"></div>
+                        </div>
+                        <div class="info">
+                            <div slot="title">SELinux status</div>
+                            <div slot="detail" id="selinux"></div>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- KPM -->
             <div id="kpm-page" class="page">
-                
+                <div class="page-content">
+                    <div class="module-list content-padding" id="kpm-list"></div>
+                    <div class="empty-list" id="no-module">No module loaded</div>
+                </div>
+                <md-fab variant="primary" aria-label="load" id="load">
+                    <md-icon slot="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M440-120v-320H120v-80h320v-320h80v320h320v80H520v320h-80Z"/></svg></md-icon>
+                </md-fab>
             </div>
             <!-- Settings -->
             <div id="settings-page" class="page">
-                <div class="list-item" id="clear-superkey">
-                    <md-ripple></md-ripple>
-                    <md-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M280-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 120q-100 0-170-70T40-480q0-100 70-170t170-70q81 0 141.5 46T506-560h335l79 79-140 160-100-79-80 80-80-80h-14q-25 72-87 116t-139 44Z"/></svg></md-icon>
-                    <div slot="headline">Clear SuperKey</div>
+                <div class="page-content">
+                    <div class="list-item" id="clear-superkey">
+                        <md-ripple></md-ripple>
+                        <md-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M280-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 120q-100 0-170-70T40-480q0-100 70-170t170-70q81 0 141.5 46T506-560h335l79 79-140 160-100-79-80 80-80-80h-14q-25 72-87 116t-139 44Z"/></svg></md-icon>
+                        <div slot="headline">Clear SuperKey</div>
+                    </div>
                 </div>
             </div>
             <!-- Patch/UnPatch -->
             <div id="patch-page" class="page">
-                <div class="card content-padding" id="kpimg">
-                    <div class="card-title" slot="headline">kpimg</div>
-                    <div id="kpimg-version"></div>
-                    <div id="kpimg-time"></div>
-                    <div id="kpimg-config"></div>
+                <div class="page-content">
+                    <div class="card content-padding" id="kpimg">
+                        <div class="card-title" slot="headline">kpimg</div>
+                        <div id="kpimg-version"></div>
+                        <div id="kpimg-time"></div>
+                        <div id="kpimg-config"></div>
+                    </div>
+                    <div class="card content-padding" id="kernel">
+                        <div class="card-title" slot="headline">Kernel</div>
+                        <div id="kernel-info"></div>
+                    </div>
+                    <div class="card content-padding" id="superkey">
+                        <div class="card-title" slot="headline">SuperKey</div>
+                        <md-outlined-text-field label="Set SuperKey" type="password" class="password-field">
+                            <md-icon-button toggle selected slot="trailing-icon">
+                                <md-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z" /></svg></md-icon>
+                                <md-icon slot="selected"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m644-428-58-58q9-47-27-88t-93-32l-58-58q17-8 34.5-12t37.5-4q75 0 127.5 52.5T660-500q0 20-4 37.5T644-428Zm128 126-58-56q38-29 67.5-63.5T832-500q-50-101-143.5-160.5T480-720q-29 0-57 4t-55 12l-62-62q41-17 84-25.5t90-8.5q151 0 269 83.5T920-500q-23 59-60.5 109.5T772-302Zm20 246L624-222q-35 11-70.5 16.5T480-200q-151 0-269-83.5T40-500q21-53 53-98.5t73-81.5L56-792l56-56 736 736-56 56ZM222-624q-29 26-53 57t-41 67q50 101 143.5 160.5T480-280q20 0 39-2.5t39-5.5l-36-38q-11 3-21 4.5t-21 1.5q-75 0-127.5-52.5T300-500q0-11 1.5-21t4.5-21l-84-82Zm319 93Zm-151 75Z" /></svg></md-icon>
+                            </md-icon-button>
+                        </md-outlined-text-field>
+                    </div>
+                    <div class="trailing-btn content-padding">
+                        <md-filled-button id="embed">Embed KPM</md-filled-button>
+                        <md-filled-button id="start" disabled>Start</md-filled-button>
+                    </div>
+                    <div class="output-terminal content-padding" id="patch-terminal"></div>
                 </div>
-                <div class="card content-padding" id="kernel">
-                    <div class="card-title" slot="headline">Kernel</div>
-                    <div id="kernel-info"></div>
-                </div>
-                <div class="card content-padding" id="superkey">
-                    <div class="card-title" slot="headline">SuperKey</div>
-                    <md-outlined-text-field label="Set SuperKey" type="password" class="password-field">
-                        <md-icon-button toggle selected slot="trailing-icon">
-                            <md-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z" /></svg></md-icon>
-                            <md-icon slot="selected"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m644-428-58-58q9-47-27-88t-93-32l-58-58q17-8 34.5-12t37.5-4q75 0 127.5 52.5T660-500q0 20-4 37.5T644-428Zm128 126-58-56q38-29 67.5-63.5T832-500q-50-101-143.5-160.5T480-720q-29 0-57 4t-55 12l-62-62q41-17 84-25.5t90-8.5q151 0 269 83.5T920-500q-23 59-60.5 109.5T772-302Zm20 246L624-222q-35 11-70.5 16.5T480-200q-151 0-269-83.5T40-500q21-53 53-98.5t73-81.5L56-792l56-56 736 736-56 56ZM222-624q-29 26-53 57t-41 67q50 101 143.5 160.5T480-280q20 0 39-2.5t39-5.5l-36-38q-11 3-21 4.5t-21 1.5q-75 0-127.5-52.5T300-500q0-11 1.5-21t4.5-21l-84-82Zm319 93Zm-151 75Z" /></svg></md-icon>
-                        </md-icon-button>
-                    </md-outlined-text-field>
-                </div>
-                <div class="trailing-btn content-padding">
-                    <md-filled-button id="embed">Embed KPM</md-filled-button>
-                    <md-filled-button id="start" disabled>Start</md-filled-button>
-                </div>
-                <div class="output-terminal content-padding" id="patch-terminal"></div>
             </div>
         </div>
 
@@ -158,6 +170,25 @@
             <div slot="actions">
                 <md-text-button class="cancel">Cancel</md-text-button>
                 <md-text-button class="confirm">OK</md-text-button>
+            </div>
+        </md-dialog>
+        <md-dialog class="text-field-dialog" id="control-dialog">
+            <div slot="headline">Control KPModule</div>
+            <div slot="content">
+                <div>Input control parameters:</div>
+                <md-outlined-text-field label="Parameters"></md-outlined-text-field>
+            </div>
+            <div slot="actions">
+                <md-text-button class="cancel">Cancel</md-text-button>
+                <md-filled-button class="confirm" disabled>OK</md-filled-button>
+            </div>
+        </md-dialog>
+        <md-dialog id="unload-dialog">
+            <div slot="headline">KPModule</div>
+            <div slot="content"></div>
+            <div slot="actions">
+                <md-text-button class="cancel">Cancel</md-text-button>
+                <md-text-button class="confirm">Unload</md-text-button>
             </div>
         </md-dialog>
     </div>

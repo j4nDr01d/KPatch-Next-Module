@@ -74,11 +74,17 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.page-content {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 16px;
-    z-index: 0;
     overflow-y: auto;
     padding: 16px 0;
     box-sizing: border-box;
@@ -90,7 +96,7 @@ body {
     z-index: 1;
 }
 
-#settings-page {
+#settings-page .page-content {
     padding-top: 0;
 }
 
@@ -166,6 +172,46 @@ body {
     margin-bottom: 12px;
 }
 
+.module-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 72px;
+}
+
+.module-card-title {
+    font-weight: 500;
+    padding-bottom: 4px;
+}
+
+.module-card-subtitle {
+    font-size: 0.8em;
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+.module-card-content {
+    padding: 16px 0;
+    font-size: 0.8em;
+    color: var(--md-sys-color-outline);
+}
+
+.module-card-actions {
+    padding-top: 16px;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.module-card-actions md-filled-tonal-icon-button {
+    --md-filled-tonal-icon-button-container-width: 64px;
+}
+
+md-fab {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+}
+
 md-outlined-text-field {
     --md-outlined-text-field-container-shape: 16px;
     width: 100%;
@@ -190,9 +236,21 @@ md-outlined-text-field {
     align-items: center;
     position: relative;
     width: 100%;
-    padding: 16px;
+    padding: 20px 16px;
     box-sizing: border-box;
     font-size: 1.1em;
+}
+
+.empty-list {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty-list.hidden {
+    display: none;
 }
 
 .bottom-bar {
@@ -217,7 +275,7 @@ md-outlined-text-field {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 16px;
+    padding-top: 20px;
     gap: 4px;
     position: relative;
     user-select: none;
@@ -226,7 +284,7 @@ md-outlined-text-field {
 .bottom-bar-item::before {
     content: '';
     position: absolute;
-    top: 16px;
+    top: 20px;
     left: 50%;
     width: 56px;
     height: 32px;
@@ -279,8 +337,14 @@ md-outlined-text-field {
     position: relative;
 }
 
+md-dialog [slot="content"] {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 .text-field-dialog {
-    margin-top: 20%;
+    margin-top: 20vh;
 }
 
 [slot="headline"] {

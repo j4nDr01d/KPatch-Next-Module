@@ -2,6 +2,7 @@ import '@material/web/all.js';
 import { exec } from 'kernelsu-alt';
 import { setupRoute } from './route.js';
 import * as patchModule from './page/patch.js';
+import * as kpmModule from './page/kpm.js';
 
 export const modDir = '/data/adb/modules/KPatch-Next';
 
@@ -15,6 +16,7 @@ async function updateStatus() {
         document.getElementById('version').textContent = version;
         notInstalled.setAttribute('hidden', '');
         working.removeAttribute('hidden');
+        kpmModule.refreshKpmList();
     } else {
         document.getElementById('version').textContent = 'Not installed';
         notInstalled.removeAttribute('hidden');
@@ -98,6 +100,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateStatus();
     }
 
+    // Kpm
+    const controlDialog = document.getElementById('control-dialog');
+    const controlTextField = controlDialog.querySelector('md-outlined-text-field');
+    controlTextField.addEventListener('input', () => {
+        controlDialog.querySelector('.confirm').disabled = !controlTextField.value;
+    });
+    document.getElementById('load').onclick = () => {
+        kpmModule.uploadAndLoadModule();
+        kpmModule.refreshKpmList();
+    }
+
+    updateStatus();
     updateBtnState(superkey);
     initInfo();
 });
@@ -120,8 +134,8 @@ document.querySelectorAll('md-dialog').forEach(dialog => {
         ];
         customAnim.scrim = [
             [
-                [{'opacity': 0}, {'opacity': 0.32}],
-                {duration: 300, easing: 'linear'},
+                [{ 'opacity': 0 }, { 'opacity': 0.32 }],
+                { duration: 300, easing: 'linear' },
             ],
         ];
         customAnim.container = [];
@@ -142,8 +156,8 @@ document.querySelectorAll('md-dialog').forEach(dialog => {
         ];
         customAnim.scrim = [
             [
-                [{'opacity': 0.32}, {'opacity': 0}],
-                {duration: 300, easing: 'linear'},
+                [{ 'opacity': 0.32 }, { 'opacity': 0 }],
+                { duration: 300, easing: 'linear' },
             ],
         ];
         customAnim.container = [];
