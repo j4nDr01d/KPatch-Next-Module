@@ -56,8 +56,8 @@ function patch(type) {
         mkdir -p ${modDir}/tmp
         rm -rf ${modDir}/tmp/*
         cp ${modDir}/bin/kpimg ${modDir}/tmp/
-        busybox sh -c ". ${modDir}/util_functions.sh; get_current_slot; find_boot_image"
-    `,{ env: { PATH: `${modDir}/bin:/data/adb/ksu/bin:/data/adb/magisk:$PATH` } }).then((result) => {
+        busybox sh ${modDir}/boot_extract.sh
+    `, { env: { PATH: `${modDir}/bin:/data/adb/ksu/bin:/data/adb/magisk:$PATH`, ASH_STANDALONE: '1' } }).then((result) => {
         const bootImageMatch = result.stdout.match(/BOOTIMAGE=(.*)/);
         const bootImage = bootImageMatch ? bootImageMatch[1].trim() : null;
         if (!bootImage) {
