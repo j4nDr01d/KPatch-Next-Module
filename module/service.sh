@@ -7,10 +7,9 @@ CONFIG="$KPNDIR/package_config"
 key="$(cat $KPNDIR/key | base64 -d)"
 
 if [ -z "$key" ] || [ -z "$(kpatch $key hello)" ]; then
+    touch "$MODDIR/unresolved"
     exit 0
 fi
-
-[ -f "$CONFIG" ] || exit 0
 
 for kpm in $KPNDIR/kpm/*.kpm; do
     [ -s "$kpm" ] || continue
@@ -20,6 +19,8 @@ done
 until [ "$(getprop sys.boot_completed)" = "1" ]; do
     sleep 1
 done
+
+[ -f "$CONFIG" ] || exit 0
 
 tail -n +2 "$CONFIG" | while IFS=, read -r pkg exclude allow uid; do
     if [ "$exclude" = "1" ]; then

@@ -44,7 +44,18 @@ function updateSuperkey(key) {
         field.value = key;
     });
     localStorage.setItem('kp-next_superkey', key);
-    exec(`[ -n "${key}" ] && echo "${key}" | base64 -w0 > /data/adb/kp-next/key || rm -f /data/adb/kp-next/key`);
+    exec(`
+        key="${key}"
+        if [ -n "$key" ]; then
+            echo "$key" | base64 -w0 > /data/adb/kp-next/key
+            if [ -f "${modDir}/unresolved" ]; then
+                rm -f "${modDir}/unresolved"
+                busybox nohup sh "${modDir}/service.sh" &
+            fi
+        else
+            rm -f /data/adb/kp-next/key
+        fi
+    `, { env: { PATH: '/data/adb/ksu/bin:/data/adb/magisk:$PATH' } });
 }
 
 function updateBtnState(value) {
