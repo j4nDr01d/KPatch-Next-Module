@@ -18,15 +18,15 @@ async function updateStatus() {
     const installedOnly = document.querySelectorAll('.installed-only');
     if (version) {
         versionText.textContent = version;
-        notInstalled.setAttribute('hidden', '');
-        working.removeAttribute('hidden');
+        notInstalled.classList.add('unresolved');
+        working.classList.remove('unresolved');
         kpmModule.refreshKpmList();
         document.querySelector('#superkey md-outlined-text-field').value = superkey;
         installedOnly.forEach(el => el.removeAttribute('hidden'));
     } else {
         versionText.textContent = 'Not installed';
-        notInstalled.removeAttribute('hidden');
-        working.setAttribute('hidden', '');
+        notInstalled.classList.remove('unresolved');
+        working.classList.add('unresolved');
         installedOnly.forEach(el => el.setAttribute('hidden', ''));
         if (superkey) {
             updateSuperkey('');
