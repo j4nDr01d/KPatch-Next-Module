@@ -170,6 +170,7 @@ async function renderAppList() {
             `;
 
             const toggle = item.querySelector('md-switch');
+            let saveTimeout = null;
             toggle.addEventListener('change', () => {
                 const realUid = app.uid % 100000;
                 if (toggle.selected) {
@@ -179,7 +180,10 @@ async function renderAppList() {
                 } else {
                     excludedApps = excludedApps.filter(e => e.packageName !== app.packageName);
                 }
-                saveExcludedList(excludedApps);
+                if (saveTimeout) clearTimeout(saveTimeout);
+                saveTimeout = setTimeout(() => {
+                    saveExcludedList(excludedApps);
+                }, 500);
                 exec(`kpatch ${superkey} exclude_set ${realUid} ${toggle.selected ? 1 : 0}`, { env: { PATH: `${modDir}/bin` } });
             });
 
