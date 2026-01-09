@@ -196,6 +196,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     document.getElementById('reboot-fab').onclick = () => reboot();
 
+    // rehook
+    const rehook = document.getElementById('rehook');
+    const rehookMenu = rehook.querySelector('md-menu');
+    rehook.onclick = () => rehookMenu.open = !rehookMenu.open;
+    rehookMenu.querySelectorAll('md-menu-item').forEach(item => {
+        item.onclick = () => {
+            rehook.querySelector('.menu-text').textContent = item.textContent;
+        }
+    });
+
     updateBtnState(superkey);
     getMaxChunkSize();
 
