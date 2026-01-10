@@ -26,12 +26,10 @@ ARCH=$(getprop ro.product.cpu.abi)
 # Load utility functions
 . "$MODPATH/util_functions.sh"
 
-SUPERKEY="$1"
-BOOTIMAGE=$2
-FLASH_TO_DEVICE=$3
+BOOTIMAGE=$1
+FLASH_TO_DEVICE=$2
 shift 2
 
-[ -z "$SUPERKEY" ] && { >&2 echo "! SuperKey empty"; exit 1; }
 [ -e "$BOOTIMAGE" ] || { >&2 echo "! $BOOTIMAGE does not exist"; exit 1; }
 
 # Check for dependencies
@@ -64,7 +62,7 @@ mv kernel kernel.ori
 echo "- Patching kernel"
 
 set -x
-kptools -p -i kernel.ori -S "$SUPERKEY" -k kpimg -o kernel "$@"
+kptools -p -i kernel.ori -k kpimg -o kernel "$@"
 patch_rc=$?
 set +x
 
