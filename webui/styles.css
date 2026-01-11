@@ -136,7 +136,7 @@ body {
 }
 
 .content.no-bottom-bar {
-    margin-bottom: 0;
+    margin-bottom: var(--bottom-inset);
 }
 
 .page {
@@ -203,7 +203,8 @@ body {
     opacity: 0;
     padding-top: 0;
     padding-bottom: 0;
-    margin-top: -16px; /* flex gap override */
+    margin-top: -16px;
+    /* flex gap override */
     overflow: hidden;
 }
 
@@ -682,14 +683,4 @@ md-dialog .checkbox-item {
 
 .fab-padding {
     padding-bottom: 72px;
-}
-
-.keyboard-inset {
-    width: 100%;
-    padding-bottom: calc(40vh - 64px - 64px - var(--bottom-inset) - var(--top-inset)); /* base - top bar - fab - insets */
-    transition: padding-bottom 0.2s ease;
-}
-
-.keyboard-inset.hide {
-    padding-bottom: 0;
 }
